@@ -7,4 +7,5 @@ from django.urls import reverse
 def getHome(request):
     if request.user.is_authenticated:
         return render(request, template_name='Hub/home.html')
-    pass
+    else:
+        return redirect(reverse('user:login'))

@@ -59,13 +59,13 @@ def customLogin(request):
                 'form': UserForm(None),
                 'errors': True
             }
-            return render(request, template_name='Users/login.html', context=context)
+            return render(request, template_name='User/login.html', context=context)
     else:
         context = {
             'form': UserForm(None),
             'error': False
         }
-        return render(request, template_name='Users/login.html', context=context)
+        return render(request, template_name='User/login.html', context=context)
 
 
 def customLogout(request):
