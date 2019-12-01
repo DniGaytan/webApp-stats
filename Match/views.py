@@ -37,5 +37,17 @@ def updateMatch(request, match_id):
     pass
 
 
-def deleteMatch(request):
+def deleteMatch(request, tournament_id):
+    pass
+
+
+def createTournament(request):
+    pass
+
+
+def updateTournament(request, tournament_id):
+    pass
+
+
+def deleteTournament(request, tournament_id):
     pass
