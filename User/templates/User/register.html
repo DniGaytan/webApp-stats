@@ -1,34 +1,18 @@
 {% extends 'base.html' %} {% block bodyContent %}
 
 <div class="row container" style="margin-top: 50px">
-  <form class="col s12" action="{% url 'user:login' %}" method="POST">
+  <form class="col s12" action="{% url 'user:register' %}" method="POST">
     <div class="row">
-      <div class="input-field col s6">
-        <input id="first_name" type="text" class="validate" />
-        <label for="first_name">First Name</label>
+      {% csrf_token %}
+      <!-- -->
+      {% for formfield in form%}
+      <div class="row">
+        <div class="input-field col s12">
+          {{ formfield }}
+          <label for="{{ formfields.id_of_label}}">{{ formfield.label }}</label>
+        </div>
       </div>
-      <div class="input-field col s6">
-        <input id="last_name" type="text" class="validate" />
-        <label for="last_name">Last Name</label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="input-field col s12">
-        <input id="email" type="email" class="validate" />
-        <label for="email">Email</label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="input-field col s12">
-        <input id="password" type="password" class="validate" />
-        <label for="password">Password</label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="input-field col s12">
-        <input id="password-conf" type="password" class="validate" />
-        <label for="password-conf">Password confirmation</label>
-      </div>
+      {%endfor %}
     </div>
 
     <button class="btn waves-effect waves-light" type="submit" name="action">
@@ -36,6 +20,9 @@
       <i class="material-icons right">send</i>
     </button>
   </form>
+  <div class="col s12" style="margin-top: 20px">
+    <a href="{% url 'user:login' %}"> Go to login </a>
+  </div>
 </div>
 
 {% endblock %}

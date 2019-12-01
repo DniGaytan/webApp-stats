@@ -15,13 +15,12 @@ def customRegister(request):
             password = form.cleaned_data['password']
             user.set_password(password)
             user.save()
-            form_extra = UserExtraForm(form.cleaned_data['filename'])
-            form_extra.user = user
-            form_extra.save()
+            # form_extra = UserExtraForm(form.cleaned_data['filename'])
+            # form_extra.user = user
+            # form_extra.save()
             user = authenticate(username=username, password=password)
             login(request, user)
-            request.session['user'] = user
-            return redirect(reverse('principal:Main'))
+            return redirect(reverse('hub:home'))
         else:
             if len(form.cleaned_data['password']) < 8:
                 form.add_error('password', 'La contraseña es muy corta')
@@ -52,8 +51,7 @@ def customLogin(request):
         user = authenticate(username=username, password=password)
         if user is not None and user.is_active:
             login(request, user)
-            request.session['user'] = user
-            return redirect(reverse('principal:Main'))
+            return redirect(reverse('hub:home'))
         else:
             context = {
                 'form': UserForm(None),
@@ -70,5 +68,4 @@ def customLogin(request):
 
 def customLogout(request):
     logout(request)
-    del request.session['user']
-    return redirect(reverse('principal:Main'))
+    return redirect(reverse('user:login'))

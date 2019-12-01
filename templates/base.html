@@ -63,17 +63,16 @@
     </nav>
 
     <ul id="nav-user-dropdown" class="dropdown-content">
-      <li><a href="#!">one</a></li>
-      <li><a href="#!">two</a></li>
+      <li><a href="#!">Terms</a></li>
+      <li><a href="#!">Settings</a></li>
       <li class="divider"></li>
-      <li><a href="#!">Go back</a></li>
+      <li><a href="{% url 'user:logout' %}">Logout</a></li>
     </ul>
 
     <ul class="sidenav" id="mobile-demo">
-      <li><a href="">Sass</a></li>
-      <li><a href="">Components</a></li>
-      <li><a href="">Javascript</a></li>
-      <li><a href="">Mobile</a></li>
+      <li><a href="">Terms</a></li>
+      <li><a href="">Settings</a></li>
+      <li><a href="{% url 'user:logout' %}">Logout</a></li>
     </ul>
 
     {% block bodyContent%} {% endblock %}

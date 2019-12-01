@@ -2,23 +2,44 @@
 
 <div class="row container" style="margin-top: 50px">
   <form class="col s12" action="{% url 'user:login' %}" method="POST">
+    {% csrf_token %}
+    <!-- -->
+    {% for formfield in form %}
+    <!-- -->
+    {% if formfield.name != 'email' and formfield.name != 'first_name' %}
+    <!-- -->
+    {% if formfield.name != 'last_name'%}
     <div class="row">
       <div class="input-field col s12">
-        <input id="email" type="email" class="validate" />
-        <label for="email">Email</label>
+        {{ formfield }}
+        <label for="{{ formfield.id_of_label}}">{{ formfield.label }}</label>
       </div>
     </div>
+    {% endif %}{% endif %} {% endfor %} {% if errors %}
     <div class="row">
-      <div class="input-field col s12">
-        <input id="password" type="password" class="validate" />
-        <label for="password">Password</label>
+      <div class="col s12">
+        <span
+          class="helper-text red lighten-3"
+          data-error="wrong"
+          data-success="right"
+        >
+          Username and/or password are invalid
+        </span>
       </div>
     </div>
-    <button class="btn waves-effect waves-light" type="submit" name="action">
-      Register
+    {% endif %}
+    <button
+      class="btn waves-effect waves-light green"
+      type="submit"
+      name="action"
+    >
+      Login
       <i class="material-icons right">send</i>
     </button>
   </form>
+  <div class="col s12" style="margin-top: 20px">
+    <a href="{% url 'user:register' %}"> Go to register </a>
+  </div>
 </div>
 
 {% endblock %}
