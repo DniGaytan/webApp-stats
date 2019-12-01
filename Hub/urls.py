@@ -4,5 +4,5 @@ from Hub import views
 app_name = 'hub'
 
 urlpatterns = [
-    path('home/', views.getHome, name='home')
+    path('home/', views.home, name='home')
 ]
