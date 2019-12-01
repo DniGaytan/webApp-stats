@@ -17,9 +17,11 @@ from django.contrib import admin
 from django.urls import path, include
 from User import urls as userUrls
 from Hub import urls as hubUrls
+from Match import urls as matchUrls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('user/', include(userUrls), name='user'),
     path('hub/', include(hubUrls), name='hub'),
+    path('match/', include(matchUrls), name='match'),
 ]
