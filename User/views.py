@@ -35,14 +35,14 @@ def customRegister(request):
                 'form': form,
                 'errors': form.errors,
             }
-            return render(request, template_name='Users/register.html', context=context)
+            return render(request, template_name='User/register.html', context=context)
     else:
         context = {
             'form': form,
             'errors': None,
         }
 
-        return render(request, template_name='Users/register.html', context=context)
+        return render(request, template_name='User/register.html', context=context)
 
 
 def customLogin(request):
