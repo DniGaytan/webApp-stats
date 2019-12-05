@@ -7,6 +7,12 @@ from django.urls import reverse
 
 
 def customRegister(request):
+
+    if(request.user.is_anonymous):
+        this_user = 'Anonymous'
+    else:
+        this_user = request.user.firstname
+
     form = UserForm(request.POST or None)
     if request.method == "POST":
         if form.is_valid():
@@ -31,12 +37,14 @@ def customRegister(request):
                 form.add_error('email', 'Ingresa un correo valido')
 
             context = {
+                'user': this_user,
                 'form': form,
                 'errors': form.errors,
             }
             return render(request, template_name='User/register.html', context=context)
     else:
         context = {
+            'user': this_user,
             'form': form,
             'errors': None,
         }
@@ -45,6 +53,11 @@ def customRegister(request):
 
 
 def customLogin(request):
+    if(request.user.is_anonymous):
+        this_user = 'Anonymous'
+    else:
+        this_user = request.user.firstname
+
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['password']
@@ -60,6 +73,7 @@ def customLogin(request):
             return render(request, template_name='User/login.html', context=context)
     else:
         context = {
+            'user': this_user,
             'form': UserForm(None),
             'error': False
         }
