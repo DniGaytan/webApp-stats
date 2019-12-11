@@ -1,1 +1,6 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block bodyContent %}
+
+<div>
+  {% for match in matches%} {{match.participants.all.0}} {% endfor %}
+</div>
+{% endblock %}

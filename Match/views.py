@@ -8,7 +8,7 @@ from Match.models import Match
 # Create your views here.
 
 
-def allMatches(request):
+def getAllMatches(request):
     if request.user.is_authenticated:
 
         # get all matches

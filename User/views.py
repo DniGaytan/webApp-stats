@@ -11,7 +11,7 @@ def customRegister(request):
     if(request.user.is_anonymous):
         this_user = 'Anonymous'
     else:
-        this_user = request.user.firstname
+        this_user = request.user.first_name
 
     form = UserForm(request.POST or None)
     if request.method == "POST":
@@ -56,7 +56,7 @@ def customLogin(request):
     if(request.user.is_anonymous):
         this_user = 'Anonymous'
     else:
-        this_user = request.user.firstname
+        this_user = request.user.first_name
 
     if request.method == "POST":
         username = request.POST['username']

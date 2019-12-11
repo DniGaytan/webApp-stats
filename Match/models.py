@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.timezone import now
 
 
 GAME_CHOICES = [
@@ -9,10 +10,16 @@ GAME_CHOICES = [
 
 
 class Match(models.Model):
-    participants = models.ManyToManyField(User)
     admin = models.ForeignKey(
         User, related_name='admin', default=1, on_delete=None)
-    participant1Score = models.BigIntegerField(default=1)
-    participant2Score = models.BigIntegerField(default=1)
+    name = models.CharField(
+        max_length=30, default='Match')
     game = models.CharField(
         max_length=10, choices=GAME_CHOICES, default='FIFA')
+    date = models.DateField(default=now)
+
+
+class MatchEntry(models.Model):
+    participant = models.ForeignKey(User, on_delete=None)
+    match = models.ForeignKey(Match, on_delete=None)
+    score = models.BigIntegerField(default=1)
