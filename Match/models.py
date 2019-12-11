@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.utils.timezone import now
+from django.utils.timezone import now as timeNow
 
 
 GAME_CHOICES = [
@@ -16,7 +16,7 @@ class Match(models.Model):
         max_length=30, default='Match')
     game = models.CharField(
         max_length=10, choices=GAME_CHOICES, default='FIFA')
-    date = models.DateField(default=now)
+    date = models.DateField(default=timeNow)
 
 
 class MatchEntry(models.Model):
